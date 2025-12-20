@@ -45,7 +45,6 @@ func NewMutationHandler(
 	nsLister corev1listers.NamespaceLister,
 	metrics metrics.MetricsConfigManager,
 	admissionReports bool,
-	reportsConfig reportutils.ReportingConfiguration,
 ) MutationHandler {
 	return &mutationHandler{
 		log:              log,
@@ -55,7 +54,6 @@ func NewMutationHandler(
 		nsLister:         nsLister,
 		metrics:          metrics,
 		admissionReports: admissionReports,
-		reportsConfig:    reportsConfig,
 	}
 }
 

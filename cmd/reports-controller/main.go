@@ -187,7 +187,6 @@ func createReportControllers(
 				jp,
 				eventGenerator,
 				policyReports,
-				reportsConfig,
 				gcstore,
 				restMapper,
 				typeConverter,

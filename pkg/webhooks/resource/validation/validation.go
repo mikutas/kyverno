@@ -45,7 +45,6 @@ func NewValidationHandler(
 	admissionReports bool,
 	metrics metrics.MetricsConfigManager,
 	nsLister corev1listers.NamespaceLister,
-	reportConfig reportutils.ReportingConfiguration,
 ) ValidationHandler {
 	return &validationHandler{
 		log:              log,
@@ -57,7 +56,6 @@ func NewValidationHandler(
 		admissionReports: admissionReports,
 		metrics:          metrics,
 		nsLister:         nsLister,
-		reportConfig:     reportConfig,
 	}
 }
 
@@ -156,7 +154,7 @@ func (v *validationHandler) HandleValidationEnforce(
 	}
 
 	// create the admission report if any of the policies involved doesn't have the report exclusion label
-	if NeedsReports(request, policyContext.NewResource(), v.admissionReports, v.reportConfig) && hasReportablePolicy(policies) {
+	if NeedsReports(request, policyContext.NewResource(), v.admissionReports) && hasReportablePolicy(policies) {
 		go func() {
 			if err := v.createReports(context.TODO(), policyContext.NewResource(), request, engineResponses...); err != nil {
 				if reportutils.IsNamespaceTerminationError(err) {
@@ -203,7 +201,7 @@ func (v *validationHandler) HandleValidationAudit(
 	}
 
 	var responses []engineapi.EngineResponse
-	needsReport := NeedsReports(request, policyContext.NewResource(), v.admissionReports, v.reportConfig)
+	needsReport := NeedsReports(request, policyContext.NewResource(), v.admissionReports)
 	tracing.Span(
 		context.Background(),
 		"",

@@ -61,7 +61,7 @@ var (
 	}})
 	ctx           = &fakeContext{}
 	statusControl = common.NewStatusControl(&kyvernoClient, nil)
-	reportsConfig = reportutils.NewReportingConfig()
+	reportsConfig = reportutils.NewReportingConfig([]string{})
 )
 
 type fakeStatusControl struct {
@@ -114,7 +114,7 @@ func TestProcess_NoPolicyFound(t *testing.T) {
 		&fakeEngine{},
 		meta.NewDefaultRESTMapper([]schema.GroupVersion{{Group: "kyverno.io", Version: "v1"}}),
 		&libs.FakeContextProvider{},
-		reportutils.NewReportingConfig(),
+		reportutils.NewReportingConfig([]string{}),
 		&fakeStatusControl{},
 		event.NewFake())
 
@@ -164,7 +164,7 @@ func TestProcess_EngineEvaluateError(t *testing.T) {
 		engine,
 		meta.NewDefaultRESTMapper([]schema.GroupVersion{{Group: "", Version: "v1"}}),
 		&libs.FakeContextProvider{},
-		reportutils.NewReportingConfig(),
+		reportutils.NewReportingConfig([]string{}),
 		&fakeStatusControl{},
 		event.NewFake(),
 	)
