@@ -82,7 +82,6 @@ func createReportControllers(
 	configuration config.Configuration,
 	jp jmespath.Interface,
 	eventGenerator event.Interface,
-	reportsConfig reportutils.ReportingConfiguration,
 	gcstore store.Store,
 	typeConverter patch.TypeConverterManager,
 ) ([]internal.Controller, func(context.Context) error) {
@@ -254,7 +253,6 @@ func createrLeaderControllers(
 		configuration,
 		jp,
 		eventGenerator,
-		reportsConfig,
 		gcstore,
 		typeConverter,
 	)

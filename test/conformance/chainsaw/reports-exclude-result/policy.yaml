@@ -1,16 +1,10 @@
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
   name: require-multiple-replicas
-  annotations:
-    policies.kyverno.io/category: Best Practises
-    policies.kyverno.io/minversion: 1.9.2
-    policies.kyverno.io/severity: low
-    policies.kyverno.io/subject: Deployment,StatefulSet
-    policies.kyverno.io/title: Require Multiple Replicas
-    policies.kyverno.io/scored: "false"
+  namespace: myns
 spec:
-  background: false
+  background: true
   rules:
     - name: require-multiple-replicas
       match:
@@ -18,12 +12,10 @@ spec:
           - resources:
               kinds:
                 - Deployment
-                - StatefulSet
               operations:
                 - CREATE
-                - UPDATE
       validate:
         pattern:
           spec:
             replicas: ">1"
-  validationFailureAction: Audit
+  validationFailureAction: Enforce

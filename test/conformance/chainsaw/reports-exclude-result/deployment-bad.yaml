@@ -4,6 +4,7 @@ metadata:
   labels:
     app: nginx
   name: nginx-test
+  namespace: myns
 spec:
   replicas: 1
   selector:

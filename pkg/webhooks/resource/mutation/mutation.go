@@ -65,7 +65,6 @@ type mutationHandler struct {
 	nsLister         corev1listers.NamespaceLister
 	metrics          metrics.MetricsConfigManager
 	admissionReports bool
-	reportsConfig    reportutils.ReportingConfiguration
 }
 
 func (h *mutationHandler) HandleMutation(

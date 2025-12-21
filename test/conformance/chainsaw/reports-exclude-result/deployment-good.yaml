@@ -3,9 +3,10 @@ kind: Deployment
 metadata:
   labels:
     app: nginx
-  name: nginx-test
+  name: nginx-good
+  namespace: myns
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: nginx
@@ -15,5 +16,5 @@ spec:
         app: nginx
     spec:
       containers:
-        - name: nginx-1
+        - name: nginx
           image: nginx:latest
