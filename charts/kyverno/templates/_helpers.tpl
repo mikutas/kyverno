@@ -147,7 +147,6 @@
     {{- end }}
     {{- $flags = append $flags (print "--allowedResults=" (join "," $resultsConfig)) }}
   {{- end }}
-{{- end }}
 {{- end -}}
 {{- with $flags -}}
   {{- toYaml . -}}
