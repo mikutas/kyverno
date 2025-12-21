@@ -129,7 +129,7 @@
   {{- end -}}
   {{- $flags = append $flags (print "--enableReporting=" (join "," $reportingConfig)) -}}
   {{- with .reporting.allowedResults -}}
-  {{- $resultsConfig := list -}}
+    {{- $resultsConfig := list -}}
     {{- with .pass -}}
         {{- $resultsConfig = append $resultsConfig "pass" -}}
     {{- end -}}
