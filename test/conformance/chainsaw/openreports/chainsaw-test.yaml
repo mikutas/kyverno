@@ -18,6 +18,10 @@ spec:
         bindings:
         - name: name
           value: add-labels
+  - name: install-openreports
+    try:
+    - script:
+        content: kubectl apply -f https://raw.githubusercontent.com/openreports/reports-api/refs/heads/main/config/install.yaml
   - name: step-02
     try:
     - apply:
