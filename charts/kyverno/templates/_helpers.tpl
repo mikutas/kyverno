@@ -132,19 +132,19 @@
 {{- with .reporting.allowedResults -}}
   {{- $resultsConfig := list -}}
   {{- with .pass -}}
-    {{- $resultsConfig = append $reportingConfig "pass" -}}
+    {{- $resultsConfig = append $resultsConfig "pass" -}}
   {{- end -}}
   {{- with .fail -}}
-    {{- $resultsConfig = append $reportingConfig "fail" -}}
+    {{- $resultsConfig = append $resultsConfig "fail" -}}
   {{- end -}}
   {{- with .error -}}
-    {{- $resultsConfig = append $reportingConfig "error" -}}
+    {{- $resultsConfig = append $resultsConfig "error" -}}
   {{- end -}}
   {{- with .skip -}}
-    {{- $resultsConfig = append $reportingConfig "skip" -}}
+    {{- $resultsConfig = append $resultsConfig "skip" -}}
   {{- end -}}
   {{- with .warn -}}
-    {{- $resultsConfig = append $reportingConfig "warn" -}}
+    {{- $resultsConfig = append $resultsConfig "warn" -}}
   {{- end -}}
   {{- $flags = append $flags (print "--allowedResults=" (join "," $resultsConfig)) -}}
 {{- end -}}
