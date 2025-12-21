@@ -128,25 +128,25 @@
     {{- $reportingConfig = append $reportingConfig "generate" -}}
   {{- end -}}
   {{- $flags = append $flags (print "--enableReporting=" (join "," $reportingConfig)) -}}
-{{- end -}}
-{{- with .reporting.allowedResults -}}
+  {{- with .reporting.allowedResults -}}
   {{- $resultsConfig := list -}}
-  {{- with .pass -}}
-    {{- $resultsConfig = append $resultsConfig "pass" -}}
+    {{- with .pass -}}
+        {{- $resultsConfig = append $resultsConfig "pass" -}}
+    {{- end -}}
+    {{- with .fail -}}
+        {{- $resultsConfig = append $resultsConfig "fail" -}}
+    {{- end -}}
+    {{- with .error -}}
+        {{- $resultsConfig = append $resultsConfig "error" -}}
+    {{- end -}}
+    {{- with .skip -}}
+        {{- $resultsConfig = append $resultsConfig "skip" -}}
+    {{- end -}}
+    {{- with .warn -}}
+        {{- $resultsConfig = append $resultsConfig "warn" -}}
+    {{- end -}}
+    {{- $flags = append $flags (print "--allowedResults=" (join "," $resultsConfig)) -}}
   {{- end -}}
-  {{- with .fail -}}
-    {{- $resultsConfig = append $resultsConfig "fail" -}}
-  {{- end -}}
-  {{- with .error -}}
-    {{- $resultsConfig = append $resultsConfig "error" -}}
-  {{- end -}}
-  {{- with .skip -}}
-    {{- $resultsConfig = append $resultsConfig "skip" -}}
-  {{- end -}}
-  {{- with .warn -}}
-    {{- $resultsConfig = append $resultsConfig "warn" -}}
-  {{- end -}}
-  {{- $flags = append $flags (print "--allowedResults=" (join "," $resultsConfig)) -}}
 {{- end -}}
 {{- with $flags -}}
   {{- toYaml . -}}
