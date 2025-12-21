@@ -129,6 +129,25 @@
   {{- end -}}
   {{- $flags = append $flags (print "--enableReporting=" (join "," $reportingConfig)) -}}
 {{- end -}}
+{{- with .reporting.allowedResults -}}
+  {{- $resultsConfig := list -}}
+  {{- with .pass -}}
+    {{- $resultsConfig = append $reportingConfig "pass" -}}
+  {{- end -}}
+  {{- with .fail -}}
+    {{- $resultsConfig = append $reportingConfig "fail" -}}
+  {{- end -}}
+  {{- with .error -}}
+    {{- $resultsConfig = append $reportingConfig "error" -}}
+  {{- end -}}
+  {{- with .skip -}}
+    {{- $resultsConfig = append $reportingConfig "skip" -}}
+  {{- end -}}
+  {{- with .warn -}}
+    {{- $resultsConfig = append $reportingConfig "warn" -}}
+  {{- end -}}
+  {{- $flags = append $flags (print "--allowedResults=" (join "," $resultsConfig)) -}}
+{{- end -}}
 {{- with $flags -}}
   {{- toYaml . -}}
 {{- end -}}

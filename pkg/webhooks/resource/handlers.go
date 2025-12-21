@@ -108,7 +108,6 @@ func NewHandlers(
 		backgroundServiceAccountName: backgroundServiceAccountName,
 		reportsServiceAccountName:    reportsServiceAccountName,
 		auditPool:                    pond.New(maxAuditWorkers, maxAuditCapacity, pond.Strategy(pond.Lazy())),
-		reportingConfig:              reportingConfig,
 	}
 }
 
@@ -138,7 +137,6 @@ func (h *resourceHandlers) Validate(ctx context.Context, logger logr.Logger, req
 		h.admissionReports,
 		h.metricsConfig,
 		h.nsLister,
-		h.reportingConfig,
 	)
 	var wg wait.Group
 	var ok bool
@@ -218,7 +216,6 @@ func (h *resourceHandlers) Mutate(ctx context.Context, logger logr.Logger, reque
 			h.eventGen,
 			h.admissionReports,
 			h.nsLister,
-			h.reportingConfig,
 		)
 		imagePatches, imageVerifyWarnings, err := ivh.Handle(ctx, newRequest, verifyImagesPolicies, policyContext)
 		if err != nil {
