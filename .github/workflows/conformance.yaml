@@ -432,7 +432,7 @@ jobs:
           k8s-version: ${{ matrix.k8s-version }}
           kyverno-configs: standard
           token: ${{ secrets.GITHUB_TOKEN }}
-          tests-path: reports/exclude-result
+          tests-path: reports-exclude-result
 
   reports:
     runs-on: ubuntu-latest

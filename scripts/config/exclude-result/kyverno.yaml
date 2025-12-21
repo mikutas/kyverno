@@ -11,10 +11,6 @@ features:
 reporting:
   allowedResults:
     fail: true
-    pass: false
-    error: false
-    skip: false
-    warn: false
 
 admissionController:
   extraArgs:

@@ -69,7 +69,6 @@ type validationHandler struct {
 	admissionReports bool
 	metrics          metrics.MetricsConfigManager
 	nsLister         corev1listers.NamespaceLister
-	reportConfig     reportutils.ReportingConfiguration
 }
 
 func (v *validationHandler) HandleValidationEnforce(
