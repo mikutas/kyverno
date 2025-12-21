@@ -414,7 +414,7 @@ jobs:
           k8s-version: ${{ matrix.k8s-version }}
           kyverno-configs: openreports
           token: ${{ secrets.GITHUB_TOKEN }}
-          tests-path: reports/openreports
+          tests-path: openreports
 
   reports-exclude-result:
     runs-on: ubuntu-latest
